@@ -6,8 +6,14 @@
 
 MCP 伺服器，將 [Kimi Code](https://www.kimi.com/code)（K2.5，256K 上下文）與 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 串接——Claude 當指揮家，Kimi 負責大量閱讀。
 
+<div align="center">
+  <img src="assets/llm-cost-vs-intelligence.jpg" alt="LLM 成本 vs 智能 — Kimi K2.5 以極低成本提供前沿級智能" width="720" />
+  <br />
+  <sub>Kimi K2.5 位於效率前沿——接近 Claude 的智能水準，成本僅 1/10。 <a href="https://www.kimi.com/code">kimi.com/code</a></sub>
+</div>
+
 > [!TIP]
-> **別再花 Claude 的錢讀檔了。** 把批量程式碼掃描交給 Kimi（256K 上下文，幾乎零成本），讓 Claude 專注它最擅長的——推理、決策、精準改碼。一次 `kimi_analyze` 呼叫可以取代 50+ 次檔案讀取，**分析密集型任務省下 60-80% 的 Claude token 成本。**
+> **別再花 Claude 的錢讀檔了。** Kimi K2.5 以極低成本提供前沿級程式碼智能（見上圖）。把批量程式碼掃描交給 Kimi（256K 上下文，幾乎零成本），讓 Claude 專注它最擅長的——推理、決策、精準改碼。一次 `kimi_analyze` 呼叫可以取代 50+ 次檔案讀取，**分析密集型任務省下 60-80% 的 Claude token 成本。**
 
 ## 快速開始
 

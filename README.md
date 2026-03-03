@@ -6,8 +6,14 @@ English | **[中文說明](README_zh.md)**
 
 MCP server that connects [Kimi Code](https://www.kimi.com/code) (K2.5, 256K context) with [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — letting Claude orchestrate while Kimi handles the heavy reading.
 
+<div align="center">
+  <img src="assets/llm-cost-vs-intelligence.jpg" alt="LLM Cost vs Intelligence — Kimi K2.5 delivers frontier-level intelligence at a fraction of the cost" width="720" />
+  <br />
+  <sub>Kimi K2.5 sits on the efficiency frontier — near-Claude intelligence at 10x lower cost. <a href="https://www.kimi.com/code">kimi.com/code</a></sub>
+</div>
+
 > [!TIP]
-> **Stop paying Claude to read files.** Delegate bulk codebase scanning to Kimi (256K context, near-zero cost) and let Claude focus on what it does best — reasoning, decisions, and precise code edits. One `kimi_analyze` call can replace 50+ file reads.
+> **Stop paying Claude to read files.** Kimi K2.5 delivers frontier-class code intelligence at a fraction of the cost (see chart above). Delegate bulk codebase scanning to Kimi (256K context, near-zero cost) and let Claude focus on what it does best — reasoning, decisions, and precise code edits. One `kimi_analyze` call can replace 50+ file reads.
 
 ## Quick Start
 
