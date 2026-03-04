@@ -1,11 +1,11 @@
 {
-  "name": "kimi-code-mcp",
+  "name": "kimi-mcp-server",
   "version": "0.3.0",
-  "description": "MCP server bridging Kimi Code (256K context) with Claude Code for cost-efficient codebase analysis",
+  "description": "MCP server for Claude Code × Kimi K2.5 (256K context) — delegate bulk codebase analysis to Kimi, save 90% on token costs",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "kimi-code-mcp": "dist/index.js"
+    "kimi-mcp-server": "dist/index.js"
   },
   "files": [
     "dist",

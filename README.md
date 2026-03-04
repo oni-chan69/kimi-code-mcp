@@ -43,12 +43,29 @@ Key specs:
 # 1. Install Kimi CLI
 uv tool install kimi-cli && kimi login
 
-# 2. Clone and build
-git clone https://github.com/howardpen9/kimi-code-mcp.git
-cd kimi-code-mcp && npm install && npm run build
+# 2. Install via npm
+npm install -g kimi-mcp-server
 ```
 
 Add to `.mcp.json` (project-level or `~/.claude/mcp.json` for global):
+
+```json
+{
+  "mcpServers": {
+    "kimi-code": {
+      "command": "npx",
+      "args": ["-y", "kimi-mcp-server"]
+    }
+  }
+}
+```
+
+Or build from source:
+
+```bash
+git clone https://github.com/howardpen9/kimi-code-mcp.git
+cd kimi-code-mcp && npm install && npm run build
+```
 
 ```json
 {
@@ -237,6 +254,15 @@ For development (auto-recompile on changes):
     }
   }
 }
+```
+
+## npm
+
+Published as [`kimi-mcp-server`](https://www.npmjs.com/package/kimi-mcp-server) on npm.
+
+```bash
+npx kimi-mcp-server          # run directly
+npm install -g kimi-mcp-server # install globally
 ```
 
 ## Project Structure
